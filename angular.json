@@ -23,12 +23,7 @@
             ],
             "styles": [
               "src/styles.css"
-            ],
-            "server": "src/main.server.ts",
-            "outputMode": "server",
-            "ssr": {
-              "entry": "src/server.ts"
-            }
+            ]
           },
           "configurations": {
             "production": {
@@ -44,12 +39,29 @@
                   "maximumError": "8kB"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "server": "src/main.server.ts",
+              "outputMode": "server",
+              "ssr": {
+                "entry": "src/server.ts"
+              }
             },
             "development": {
               "optimization": false,
               "extractLicenses": false,
-              "sourceMap": true
+              "sourceMap": true,
+              "server": "src/main.server.ts",
+              "outputMode": "server",
+              "ssr": {
+                "entry": "src/server.ts"
+              }
+            },
+            "development-no-ssr": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "server": false,
+              "ssr": false
             }
           },
           "defaultConfiguration": "production"
@@ -62,9 +74,12 @@
             },
             "development": {
               "buildTarget": "agendamento-frontend:build:development"
+            },
+            "no-ssr": {
+              "buildTarget": "agendamento-frontend:build:development-no-ssr"
             }
           },
-          "defaultConfiguration": "development"
+          "defaultConfiguration": "no-ssr"
         },
         "extract-i18n": {
           "builder": "@angular/build:extract-i18n"
@@ -86,5 +101,8 @@
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "05c2755f-3db7-41fa-9643-0b60bb8c2a18"
   }
 }

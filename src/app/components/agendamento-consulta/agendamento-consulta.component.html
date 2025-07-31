@@ -1,0 +1,71 @@
+<div class="container">
+  <h1>Agendamento de Consultas</h1>
+
+  <h2>Cadastrar / Atualizar Agendamento</h2>
+  <form (ngSubmit)="submitForm()">
+    <div>
+      <label for="motivo">Motivo da Consulta:</label>
+      <input type="text" id="motivo" [(ngModel)]="agendamento.motivo" name="motivo" required>
+    </div>
+    <div>
+      <label for="profissional">Profissional:</label>
+      <input type="text" id="profissional" [(ngModel)]="agendamento.profissional" name="profissional" required>
+    </div>
+    <div>
+      <label for="especialidade">Especialidade:</label>
+      <select id="especialidade" [(ngModel)]="agendamento.especialidade" name="especialidade" required>
+        <option value="">Selecione uma especialidade</option>
+        <option value="CARDIOLOGIA">Cardiologia</option>
+        <option value="DERMATOLOGIA">Dermatologia</option>
+        <option value="ORTOPEDIA">Ortopedia</option>
+        <option value="PEDIATRIA">Pediatria</option>
+      </select>
+    </div>
+    <div>
+      <label for="endereco">Endereço:</label>
+      <input type="text" id="endereco" [(ngModel)]="agendamento.endereco" name="endereco" required>
+    </div>
+    <div>
+      <label for="data">Data:</label>
+      <input type="date" id="data" [(ngModel)]="agendamento.data" name="data" required>
+    </div>
+    <div>
+      <label for="hora">Hora:</label>
+      <input type="time" id="hora" [(ngModel)]="agendamento.hora" name="hora" required>
+    </div>
+    <div class="form-actions">
+      <button type="submit" class="submit">Salvar</button>
+      <button type="button" class="reset" (click)="agendamento = resetAgendamento()">Limpar</button>
+    </div>
+  </form>
+
+  <h2>Agendamentos Existentes</h2>
+  <table *ngIf="agendamentos.length > 0">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Motivo</th>
+        <th>Profissional</th>
+        <th>Especialidade</th>
+        <th>Data</th>
+        <th>Hora</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let ag of agendamentos">
+        <td>{{ ag.id }}</td>
+        <td>{{ ag.motivo }}</td>
+        <td>{{ ag.profissional }}</td>
+        <td>{{ ag.especialidade }}</td>
+        <td>{{ ag.data }}</td>
+        <td>{{ ag.hora }}</td>
+        <td class="actions-buttons">
+          <button class="edit" (click)="editAgendamento(ag)">Editar</button>
+          <button class="delete" (click)="deleteAgendamento(ag.id!)">Excluir</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <p *ngIf="agendamentos.length === 0">Nenhum agendamento encontrado.</p>
+</div>

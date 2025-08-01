@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { CommonModule } from '@angular/common'; // Importação padrão para standalone
-import { FormsModule } from '@angular/forms'; // Adicione esta importação
+import { CommonModule } from '@angular/common'; 
+import { FormsModule } from '@angular/forms'; 
 import { AgendamentoConsultaService } from '../../services/agendamento-consulta.service';
 import { AgendamentoConsulta } from '../../models/agendamento-consulta.model';
 
 @Component({
   selector: 'app-agendamento-consulta',
   standalone: true,
-  imports: [CommonModule, FormsModule], // Adicione o FormsModule aqui
+  imports: [CommonModule, FormsModule], 
   templateUrl: './agendamento-consulta.component.html',
   styleUrls: ['./agendamento-consulta.component.css']
 })
@@ -30,13 +30,11 @@ export class AgendamentoConsultaComponent implements OnInit {
 
   submitForm(): void {
     if (this.agendamento.id) {
-      // Update
       this.agendamentoService.updateAgendamento(this.agendamento).subscribe(() => {
         this.loadAgendamentos();
         this.agendamento = this.resetAgendamento();
       });
     } else {
-      // Create
       this.agendamentoService.createAgendamento(this.agendamento).subscribe(() => {
         this.loadAgendamentos();
         this.agendamento = this.resetAgendamento();
